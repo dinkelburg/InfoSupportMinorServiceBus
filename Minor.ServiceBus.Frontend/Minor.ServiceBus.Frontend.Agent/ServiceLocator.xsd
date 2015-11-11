@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema id="ServiceLocator"
+    targetNamespace="http://tempuri.org/ServiceLocator.xsd"
+    xmlns="http://tempuri.org/ServiceLocator.xsd"
+    xmlns:mstns="http://tempuri.org/ServiceLocator.xsd"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+>
+  <xsd:complexType name="serviceLocation">
+    <xsd:sequence minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="name" type="xsd:string"></xsd:element>
+      <xsd:element name="profile" type="xsd:string"></xsd:element>
+      <xsd:element name="metadatAddress" type="xsd:string"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
