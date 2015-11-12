@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Minor.ServiceBus.Agent.Implementation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,11 @@ namespace Minor.ServiceBus.Frontend.Site.Controllers
     {
         public ActionResult Index()
         {
+            ServiceFactory<IBSKlantBeheerService> factory = new ServiceFactory<IBSKlantBeheerService>("BSKlantbeheer");
+            var proxy = factory.CreateAgent();
+
+            proxy.FindKlanten();
+
             return View();
         }
 

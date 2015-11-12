@@ -60,7 +60,7 @@ namespace Minor.ServiceBus.Agent.Tests
             var serviceFactory = new ServiceFactory<IKlant>("BSBeheerKlant", config);
 
             //Assert
-            Assert.IsInstanceOfType(serviceFactory.ServiceLocator, typeof(WebServiceLocator));
+            Assert.IsInstanceOfType(serviceFactory.ServiceLocator, typeof(WebServiceLocator<IKlant>));
         }
 
         [TestMethod]
@@ -73,7 +73,7 @@ namespace Minor.ServiceBus.Agent.Tests
             var serviceFactory = new ServiceFactory<IKlant>("BSBeheerKlant", config);
 
             //Assert
-            Assert.IsInstanceOfType(serviceFactory.ServiceLocator, typeof(WebServiceLocator));
+            Assert.IsInstanceOfType(serviceFactory.ServiceLocator, typeof(WebServiceLocator<IKlant>));
         }
 
 
