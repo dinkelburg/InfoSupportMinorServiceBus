@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Minor.ServiceBus.Agent.Implementation
 {
-    interface IServiceLocator
+    public interface IServiceLocator
     {
         string FindMetadataEndpointAddress(string name, string profile);
         string FindMetadataEndpointAddress(string name, string profile, decimal version);

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml.Linq" />
@@ -50,6 +51,8 @@
       <DependentUpon>ServiceLocation.xsd</DependentUpon>
     </Compile>
     <Compile Include="Exceptions\ServiceLocationDoesntExistsException.cs" />
+    <Compile Include="ServiceLocatorConfigSection.cs" />
+    <Compile Include="Exceptions\UnknownServiceLocatorException.cs" />
     <Compile Include="WebServiceLocator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +61,15 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>"C:\Program Files (x86)\Microsoft SDKs\Windows\v10.0A\bin\NETFX 4.6 Tools\svcutil.exe" ^
+ /d:"$(ProjectDir) " ^
+ /config:app.config ^
+ /mergeConfig ^
+ "$(SolutionDir)..\99-shared\Contracts\BSKlantbeheer\*.wsdl" ^
+ "$(SolutionDir)..\99-shared\Contracts\BSKlantbeheer\*.xsd"
+</PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
