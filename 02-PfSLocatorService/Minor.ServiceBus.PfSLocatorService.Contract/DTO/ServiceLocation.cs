@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Minor.ServiceBus.PfSLocatorService.Contract.DTO
 {
-    [DataContract(Namespace = "urn:minor:erh:case1:schema")]
+    [DataContract(Namespace = "urn:minor:servicebus:pfslocatorservice:schema")]
     public class ServiceLocation
     {
         [DataMember]

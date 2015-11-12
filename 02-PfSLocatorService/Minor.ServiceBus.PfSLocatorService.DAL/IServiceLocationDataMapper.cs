@@ -9,6 +9,6 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL
     public interface IServiceLocationDataMapper
     {
         string FindMetadataEndpointAddress(string name, string profile);
-        string FindMetadataEndpointAddress(string name, string profile, decimal version);
+        string FindMetadataEndpointAddress(string name, string profile, decimal? version);
     }
 }
