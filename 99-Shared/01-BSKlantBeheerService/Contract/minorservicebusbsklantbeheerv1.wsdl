@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="urn:minor:servicebus:bsklantbeheer:v1" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" targetNamespace="urn:minor:servicebus:bsklantbeheer:v1" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="urn:minor:servicebus:bsklantbeheer:v1/Imports">
+      <xsd:import namespace="urn:minor:servicebus:bsklantbeheer:v1" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="urn:minor-servicebus-bsklantbeheer:v1:messages" />
+      <xsd:import namespace="urn:minor-servicebus-bsklantbeheer:v1:schema" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IBSKlantBeheerService_FindKlanten_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindKlanten" />
+  </wsdl:message>
+  <wsdl:message name="IBSKlantBeheerService_FindKlanten_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindKlantenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBSKlantBeheerService_FindKlantenBy_InputMessage">
+    <wsdl:part name="parameters" element="tns:FindKlantenBy" />
+  </wsdl:message>
+  <wsdl:message name="IBSKlantBeheerService_FindKlantenBy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FindKlantenByResponse" />
+  </wsdl:message>
+  <wsdl:message name="IBSKlantBeheerService_InsertCursusInstanties_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertCursusInstanties" />
+  </wsdl:message>
+  <wsdl:message name="IBSKlantBeheerService_InsertCursusInstanties_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertCursusInstantiesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IBSKlantBeheerService">
+    <wsdl:operation name="FindKlanten">
+      <wsdl:input wsaw:Action="urn:minor:servicebus:bsklantbeheer:v1/IBSKlantBeheerService/FindKlanten" message="tns:IBSKlantBeheerService_FindKlanten_InputMessage" />
+      <wsdl:output wsaw:Action="urn:minor:servicebus:bsklantbeheer:v1/IBSKlantBeheerService/FindKlantenResponse" message="tns:IBSKlantBeheerService_FindKlanten_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="FindKlantenBy">
+      <wsdl:input wsaw:Action="urn:minor:servicebus:bsklantbeheer:v1/IBSKlantBeheerService/FindKlantenBy" message="tns:IBSKlantBeheerService_FindKlantenBy_InputMessage" />
+      <wsdl:output wsaw:Action="urn:minor:servicebus:bsklantbeheer:v1/IBSKlantBeheerService/FindKlantenByResponse" message="tns:IBSKlantBeheerService_FindKlantenBy_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertCursusInstanties">
+      <wsdl:input wsaw:Action="urn:minor:servicebus:bsklantbeheer:v1/IBSKlantBeheerService/InsertCursusInstanties" message="tns:IBSKlantBeheerService_InsertCursusInstanties_InputMessage" />
+      <wsdl:output wsaw:Action="urn:minor:servicebus:bsklantbeheer:v1/IBSKlantBeheerService/InsertCursusInstantiesResponse" message="tns:IBSKlantBeheerService_InsertCursusInstanties_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DefaultBinding_IBSKlantBeheerService" type="tns:IBSKlantBeheerService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="FindKlanten">
+      <soap:operation soapAction="urn:minor:servicebus:bsklantbeheer:v1/IBSKlantBeheerService/FindKlanten" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FindKlantenBy">
+      <soap:operation soapAction="urn:minor:servicebus:bsklantbeheer:v1/IBSKlantBeheerService/FindKlantenBy" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertCursusInstanties">
+      <soap:operation soapAction="urn:minor:servicebus:bsklantbeheer:v1/IBSKlantBeheerService/InsertCursusInstanties" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+</wsdl:definitions>
