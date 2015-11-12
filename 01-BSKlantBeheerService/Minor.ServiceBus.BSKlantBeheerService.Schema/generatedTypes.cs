@@ -8,17 +8,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-servicebus-bsklantbeheer:v1:message", ClrNamespace="minorservicebusbsklantbeheer.v1.message")]
+[assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-servicebus-bsklantbeheer:v1:messages", ClrNamespace="Minor.ServiceBus.BSKlantBeheer.V1.Messages")]
 [assembly: System.Runtime.Serialization.ContractNamespaceAttribute("urn:minor-servicebus-bsklantbeheer:v1:schema", ClrNamespace="Minor.ServiceBus.BSKlantBeheer.V1.Schema")]
 
-namespace minorservicebusbsklantbeheer.v1.message
+namespace Minor.ServiceBus.BSKlantBeheer.V1.Messages
 {
     using System.Runtime.Serialization;
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="FindKlantenRequestMessage", Namespace="urn:minor-servicebus-bsklantbeheer:v1:message")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FindKlantenRequestMessage", Namespace="urn:minor-servicebus-bsklantbeheer:v1:messages")]
     public partial class FindKlantenRequestMessage : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         
@@ -54,7 +54,7 @@ namespace minorservicebusbsklantbeheer.v1.message
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="FindKlantenResponseMessage", Namespace="urn:minor-servicebus-bsklantbeheer:v1:message")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FindKlantenResponseMessage", Namespace="urn:minor-servicebus-bsklantbeheer:v1:messages")]
     public partial class FindKlantenResponseMessage : object, System.Runtime.Serialization.IExtensibleDataObject
     {
         

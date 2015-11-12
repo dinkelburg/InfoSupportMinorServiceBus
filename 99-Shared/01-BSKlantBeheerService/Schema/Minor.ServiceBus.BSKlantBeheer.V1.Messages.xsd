@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <xs:schema id="Minor"
-    targetNamespace="urn:minor-servicebus-bsklantbeheer:v1:message"
-    xmlns:msg="urn:minor-servicebus-bsklantbeheer:v1:message"
+    targetNamespace="urn:minor-servicebus-bsklantbeheer:v1:messages"
+    xmlns:msg="urn:minor-servicebus-bsklantbeheer:v1:messages"
     xmlns:k="urn:minor-servicebus-bsklantbeheer:v1:schema"
     elementFormDefault="qualified"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"

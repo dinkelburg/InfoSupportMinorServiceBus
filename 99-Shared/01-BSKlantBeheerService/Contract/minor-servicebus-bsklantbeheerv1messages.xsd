@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:minor-servicebus-bsklantbeheer:v1:messages" elementFormDefault="qualified" targetNamespace="urn:minor-servicebus-bsklantbeheer:v1:messages" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:minor-servicebus-bsklantbeheer:v1:schema" />
+  <xs:complexType name="FindKlantenResponseMessage">
+    <xs:sequence>
+      <xs:element name="Klanten" nillable="true" xmlns:q1="urn:minor-servicebus-bsklantbeheer:v1:schema" type="q1:KlantenCollection">
+        <xs:annotation>
+          <xs:appinfo>
+            <DefaultValue EmitDefaultValue="false" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FindKlantenResponseMessage" nillable="true" type="tns:FindKlantenResponseMessage" />
+</xs:schema>

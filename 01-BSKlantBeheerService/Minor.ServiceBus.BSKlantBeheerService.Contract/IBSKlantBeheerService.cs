@@ -1,4 +1,5 @@
-﻿using minorservicebusbsklantbeheer.v1.message;
+﻿using Minor.ServiceBus.BSKlantBeheer.V1.Messages;
+using Minor.ServiceBus.BSKlantBeheer.V1.Schema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +13,12 @@ namespace Minor.ServiceBus.BSKlantBeheerService.Contract
     public interface IBSKlantBeheerService
     {
         [OperationContract]
-        void FindKlanten();
+        FindKlantenResponseMessage FindKlanten();
 
         [OperationContract]
-        FindKlantenResponseMessage FindKlantenBy();
+        FindKlantenResponseMessage FindKlantenBy(KlantenSearchCriteria criteria);
 
         [OperationContract]
-        void InsertCursusInstanties();
+        void InsertCursusInstanties(Klant klant);
     }
 }
