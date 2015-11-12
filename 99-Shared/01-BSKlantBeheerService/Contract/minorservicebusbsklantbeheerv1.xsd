@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="urn:minor:servicebus:bsklantbeheer:v1" elementFormDefault="qualified" targetNamespace="urn:minor:servicebus:bsklantbeheer:v1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:minor-servicebus-bsklantbeheer:v1:messages" />
+  <xs:import namespace="urn:minor-servicebus-bsklantbeheer:v1:schema" />
+  <xs:element name="FindKlanten">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindKlantenResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FindKlantenResult" nillable="true" xmlns:q1="urn:minor-servicebus-bsklantbeheer:v1:messages" type="q1:FindKlantenResponseMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindKlantenBy">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="criteria" nillable="true" xmlns:q2="urn:minor-servicebus-bsklantbeheer:v1:schema" type="q2:KlantenSearchCriteria" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FindKlantenByResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="FindKlantenByResult" nillable="true" xmlns:q3="urn:minor-servicebus-bsklantbeheer:v1:messages" type="q3:FindKlantenResponseMessage" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertCursusInstanties">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="klant" nillable="true" xmlns:q4="urn:minor-servicebus-bsklantbeheer:v1:schema" type="q4:Klant" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InsertCursusInstantiesResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
