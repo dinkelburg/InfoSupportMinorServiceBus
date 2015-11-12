@@ -5,10 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using minor.servicebus.pfslocatorservice.schema;
 
 namespace Minor.ServiceBus.Agent.Implementation
 {
-    public class FileServiceLocator : IServiceLocator
+    public class FileServiceLocator : IServiceLocatorService
     {
         private string _filePath;
 
@@ -23,14 +24,9 @@ namespace Minor.ServiceBus.Agent.Implementation
             }
         }
 
-        public string FindMetadataEndpointAddress(string name, string profile)
+        public string FindMetadataEndpointAddress(ServiceLocation serviceLocation)
         {
-            return GetMetaDataEndPointAdress(name, profile);
-        }
-
-        public string FindMetadataEndpointAddress(string name, string profile, decimal version)
-        {
-            return GetMetaDataEndPointAdress(name, profile, version);
+            return GetMetaDataEndPointAdress(serviceLocation.Name, serviceLocation.Profile, serviceLocation.Version);
         }
 
         public string GetMetaDataEndPointAdress(string name, string profile, decimal? version = null)

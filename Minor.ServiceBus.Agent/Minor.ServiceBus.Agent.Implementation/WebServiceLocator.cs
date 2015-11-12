@@ -28,13 +28,13 @@ namespace Minor.ServiceBus.Agent.Implementation
 
         public string FindMetadataEndpointAddress(string name, string profile)
         {
-            using (var host = new ServiceHost(typeof(IServiceLocator)))
+            using (var host = new ServiceHost(typeof(IServiceLocatorService)))
             {
                 host.Open();
                 host.AddServiceEndpoint(typeof(TContract), _binding, _adress);
                 host.Close();
             }
-
+            return "";
 
         }
 
