@@ -13,7 +13,7 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL
             return "http://localhost:30412/BSKlantbeheer/mex";
         }
 
-        public string FindMetadataEndpointAddress(string name, string profile, decimal version)
+        public string FindMetadataEndpointAddress(string name, string profile, decimal? version)
         {
             return "http://localhost:30412/BSKlantbeheer/mex";
         }

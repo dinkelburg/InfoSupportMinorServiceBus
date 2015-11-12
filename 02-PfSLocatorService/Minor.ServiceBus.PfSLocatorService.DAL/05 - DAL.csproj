@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\ServiceLocation.cs" />
+    <Compile Include="Exceptions\MultipleRecordsFoundException.cs" />
+    <Compile Include="Exceptions\VersionedRecordFoundException.cs" />
+    <Compile Include="Exceptions\NoRecordsFoundException.cs" />
     <Compile Include="IServiceLocationDataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocationXMLDataMapper.cs" />

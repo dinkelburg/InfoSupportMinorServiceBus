@@ -35,7 +35,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Moq, Version=4.2.1510.2205, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.2.1510.2205\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ServiceModel" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -45,13 +50,34 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="ServiceLocatorServiceWithVersionTest.cs" />
+    <Compile Include="ServiceLocatorServiceWithoutVersionTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceLocatorServiceTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Minor.ServiceBus.PfSLocatorService.Contract\01 - Contract.csproj">
+      <Project>{a19d2502-c95d-4b17-955c-8d96d287303d}</Project>
+      <Name>01 - Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Minor.ServiceBus.PfSLocatorService.DAL\05 - DAL.csproj">
+      <Project>{ca5afbe4-8679-4504-b5a4-98b98319d9e1}</Project>
+      <Name>05 - DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Minor.ServiceBus.PfSLocatorService.Implementation\03 - Implementation.csproj">
+      <Project>{4faa9db8-1db2-4085-a126-6a8eeeb1722b}</Project>
+      <Name>03 - Implementation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

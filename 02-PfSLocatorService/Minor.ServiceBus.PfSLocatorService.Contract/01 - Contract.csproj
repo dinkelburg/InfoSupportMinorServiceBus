@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTO\ServiceLocation.cs" />
+    <Compile Include="DTO\ServiceLocationServiceFault.cs" />
     <Compile Include="IServiceLocatorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
