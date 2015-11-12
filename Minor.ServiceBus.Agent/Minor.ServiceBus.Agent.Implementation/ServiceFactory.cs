@@ -6,9 +6,9 @@ using System.ServiceModel.Description;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minor.ServiceBus.ServiceLocator.Implementation
+namespace Minor.ServiceBus.Agent.Implementation
 {
-    class ServiceFactory<TContract>
+    public class ServiceFactory<TContract>
     {
         private Dictionary<Uri, ChannelFactory<TContract>> _cache =
             new Dictionary<Uri, ChannelFactory<TContract>>();

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minor.ServiceBus.ServiceLocator.Implementation
+namespace Minor.ServiceBus.Agent.Implementation
 {
-    class WebServiceLocator : IServiceLocator
+    public class WebServiceLocator : IServiceLocator
     {
         public string FindMetadataEndpointAddress(string name, string profile)
         {

@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace Minor.ServiceBus.ServiceLocator.Implementation
+namespace Minor.ServiceBus.Agent.Implementation
 {
-    class FileServiceLocator : IServiceLocator
+    public class FileServiceLocator : IServiceLocator
     {
 
         public string FindMetadataEndpointAddress(string name, string profile)
@@ -15,8 +15,11 @@ namespace Minor.ServiceBus.ServiceLocator.Implementation
             //load xml file in
             //check with name, profile and version
             //return metadatAddress
-            //XmlSerializer s = new (typeOf(personen));
-            //presonen result = serializer.Deserialize(stream) as personen;
+
+            var locationdata = new locationData();
+
+            XmlSerializer s = new XmlSerializer(typeof(locationData));
+            locationData result = s.Deserialize(stream) as personen;
 
             throw new NotImplementedException();
         }

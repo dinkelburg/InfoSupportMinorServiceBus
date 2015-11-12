@@ -7,8 +7,8 @@
     <ProjectGuid>{9F490603-4C4E-4190-A935-027C7879935D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Minor.ServiceBus.ServiceLocator.Implementation</RootNamespace>
-    <AssemblyName>Minor.ServiceBus.ServiceLocator.Implementation</AssemblyName>
+    <RootNamespace>Minor.ServiceBus.Agent.Implementation</RootNamespace>
+    <AssemblyName>Minor.ServiceBus.Agent.Implementation</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,7 +45,15 @@
     <Compile Include="IServiceLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceFactory.cs" />
+    <Compile Include="servicelocation.cs">
+      <DependentUpon>servicelocation.xsd</DependentUpon>
+    </Compile>
     <Compile Include="WebServiceLocator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="servicelocation.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

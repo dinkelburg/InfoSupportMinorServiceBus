@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Minor.ServiceBus.ServiceLocator.Implementation
+namespace Minor.ServiceBus.Agent.Implementation
 {
     interface IServiceLocator
     {
