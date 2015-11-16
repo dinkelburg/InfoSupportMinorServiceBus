@@ -64,14 +64,31 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL
 
         public T LoadXMLFile<T>()
         {
-            var test = Directory.GetParent(Directory.GetCurrentDirectory());
+            string relativePath = Path.Combine(Directory.GetCurrentDirectory(), _filePath);
+            //relativePath = MakeAbsolutePath(_filePath);
 
             XmlSerializer serializer = new XmlSerializer(typeof(locationData));
-            using (StreamReader reader = new StreamReader(_filePath))
+            using (StreamReader reader = new StreamReader(relativePath))
             {
                 var data = serializer.Deserialize(reader);
                 return (T)data;
             }
+        }
+
+        public string MakeAbsolutePath(string relativePath)
+        {
+            string path = null;
+
+            if (HttpContext.Current != null)
+            {
+                path = HttpContext.Current.Server.MapPath(relativePath);
+            }
+            else
+            {
+                path = Path.Combine(Directory.GetCurrentDirectory(), relativePath);
+            }
+
+            return path;
         }
     }
 }
