@@ -41,12 +41,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\ServiceLocation.cs" />
+    <Compile Include="Exceptions\FilePathNotDefinedException.cs" />
     <Compile Include="Exceptions\MultipleRecordsFoundException.cs" />
     <Compile Include="Exceptions\VersionedRecordFoundException.cs" />
     <Compile Include="Exceptions\NoRecordsFoundException.cs" />
     <Compile Include="IServiceLocationDataMapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocationXMLDataMapper.cs" />
+    <Compile Include="XML\ServiceLocation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="XML\locationData.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="XML\servicelocation.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
