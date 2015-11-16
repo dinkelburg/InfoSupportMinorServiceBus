@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using minor.servicebus.pfslocatorservice.schema;
+using System.Web.Hosting;
+using System.Web;
 
 namespace Minor.ServiceBus.Agent.Implementation
 {
@@ -57,8 +59,15 @@ namespace Minor.ServiceBus.Agent.Implementation
         }
 
         public T LoadXMLFile<T>() {
+
+            string relativePath = _filePath;
+            if (_filePath.StartsWith("~"))
+            {
+                relativePath = HostingEnvironment.MapPath(_filePath);
+            }
+
             XmlSerializer serializer = new XmlSerializer(typeof(locationData));
-            using (StreamReader reader = new StreamReader(_filePath))
+            using (StreamReader reader = new StreamReader(relativePath))
             {
                 var data = serializer.Deserialize(reader);
                 return (T)data;

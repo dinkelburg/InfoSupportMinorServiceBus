@@ -7,30 +7,16 @@ using System.Web.Mvc;
 
 namespace Minor.ServiceBus.Frontend.Site.Controllers
 {
-    public class HomeController : Controller
+    public class KlantController : Controller
     {
+        // GET: Klant
         public ActionResult Index()
         {
             ServiceFactory<IBSKlantBeheerService> factory = new ServiceFactory<IBSKlantBeheerService>("BSKlantbeheer");
             var proxy = factory.CreateAgent();
+            var klant = proxy.FindKlanten();
 
-            proxy.FindKlanten();
-
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return View(klant.Klanten);
         }
     }
 }
