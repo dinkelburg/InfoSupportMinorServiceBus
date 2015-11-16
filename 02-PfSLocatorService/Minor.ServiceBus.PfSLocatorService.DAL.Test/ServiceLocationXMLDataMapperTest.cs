@@ -24,10 +24,10 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL.Test
             var fileServiceLocator = new ServiceLocationXMLDataMapper("../../locationData.xml");
 
             //Act
-            var adress = fileServiceLocator.FindMetadataEndpointAddress("BSCurusadministatie", "Production");
+            var adress = fileServiceLocator.FindMetadataEndpointAddress("BSCursusadministatie", "Production");
 
             //Assert
-            Assert.AreEqual("http://infosupport.intranet/CAS/mex", adress);
+            Assert.AreEqual("http://infosupport.intranet/CAS", adress);
         }
 
         [TestMethod]

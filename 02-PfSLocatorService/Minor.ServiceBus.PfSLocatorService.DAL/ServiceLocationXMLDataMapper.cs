@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Web;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.Web.Hosting;
 
 namespace Minor.ServiceBus.PfSLocatorService.DAL
 {
@@ -27,13 +30,14 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL
 
         public string FindMetadataEndpointAddress(string name, string profile)
         {
-            return "http://localhost:30412/BSKlantbeheer/mex";
+            return GetMetaDataEndPointAdress(name, profile);
+            //return "http://localhost:30412/BSKlantbeheer/mex";
         }
 
         public string FindMetadataEndpointAddress(string name, string profile, decimal? version)
         {
-            return "http://localhost:30412/BSKlantbeheer/mex";
-            //return GetMetaDataEndPointAdress(name, profile, version);
+            //return "http://localhost:30412/BSKlantbeheer/mex";
+            return GetMetaDataEndPointAdress(name, profile, version);
         }
 
         public string GetMetaDataEndPointAdress(string name, string profile, decimal? version = null)
@@ -60,6 +64,8 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL
 
         public T LoadXMLFile<T>()
         {
+            var test = Directory.GetParent(Directory.GetCurrentDirectory());
+
             XmlSerializer serializer = new XmlSerializer(typeof(locationData));
             using (StreamReader reader = new StreamReader(_filePath))
             {
