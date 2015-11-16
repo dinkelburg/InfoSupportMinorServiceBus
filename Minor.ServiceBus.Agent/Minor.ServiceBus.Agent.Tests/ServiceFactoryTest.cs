@@ -14,13 +14,6 @@ namespace Minor.ServiceBus.Agent.Tests
     [TestClass]
     public class ServiceFactoryTest
     {
-        public ServiceFactoryTest()
-        {
-            //
-            // TODO: Add constructor logic here
-            //
-        }
-
         [TestMethod]
         public void ServiceFactory_Bestaat()
         {
@@ -57,6 +50,9 @@ namespace Minor.ServiceBus.Agent.Tests
             //Arrange
             var config = new ServiceLocatorConfigSection();
             config.Active = "webServiceLocator";
+            config.WebServiceLocator.Address = "http://www.test.nl";
+            config.WebServiceLocator.Binding = "basicHttpBinding";
+
             var serviceFactory = new ServiceFactory<IKlant>("BSBeheerKlant", config);
 
             //Assert

@@ -3,7 +3,7 @@
   <serviceLocation>
     <name>BSKlantbeheer</name>
     <profile>Development</profile>
-    <metadataAddress>http://localhost:30412/BSKlantbeheer/mex</metadataAddress>
+    <metadataAddress>http://localhost:22521/BSKlantBeheer.svc/mex</metadataAddress>
   </serviceLocation>
   <serviceLocation>
     <name>BSCurusadministatie</name>

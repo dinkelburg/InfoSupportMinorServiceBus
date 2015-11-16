@@ -13,7 +13,22 @@ namespace Minor.ServiceBus.BSKlantBeheerService.Implementation
     {
         public FindKlantenResponseMessage FindKlanten()
         {
-            throw new NotImplementedException();
+            return new FindKlantenResponseMessage() {
+                Klanten = new KlantenCollection() 
+                {
+                    new Klant()
+                    {
+                        id = 1,
+                        klantnummer = "Luben1",
+                        voornaam = "Luben",
+                        achternaam = "Dinkelman",
+                        geboortedatum = new DateTime(2015, 11, 11).ToString(),
+                        postcode = "1234AB",
+                        straat = "Blackboy 112",
+                        woonplaats = "Loenen"
+                    }
+                }
+            };
         }
 
         public FindKlantenResponseMessage FindKlantenBy(KlantenSearchCriteria criteria)
