@@ -35,6 +35,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation
                 {
                     Message = "Name or Profile is null"
                 });
+                throw new FunctionalException() { Errors = errorList };
             }
             
             try
