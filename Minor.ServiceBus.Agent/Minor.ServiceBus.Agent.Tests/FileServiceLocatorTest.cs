@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Minor.ServiceBus.Agent.Implementation;
+using minor.servicebus.pfslocatorservice.schema;
 
 namespace Minor.ServiceBus.Agent.Tests
 {

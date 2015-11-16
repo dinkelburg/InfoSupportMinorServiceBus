@@ -9,7 +9,7 @@ using minor.servicebus.pfslocatorservice.schema;
 
 namespace Minor.ServiceBus.Agent.Implementation
 {
-    public class FileServiceLocator : IServiceLocatorService
+    public class FileServiceLocator : IServiceLocator
     {
         private string _filePath;
 
@@ -24,9 +24,14 @@ namespace Minor.ServiceBus.Agent.Implementation
             }
         }
 
-        public string FindMetadataEndpointAddress(ServiceLocation serviceLocation)
+        public string FindMetadataEndpointAddress(string name, string profile)
         {
-            return GetMetaDataEndPointAdress(serviceLocation.Name, serviceLocation.Profile, serviceLocation.Version);
+            return GetMetaDataEndPointAdress(name, profile);
+        }
+
+        public string FindMetadataEndpointAddress(string name, string profile, decimal version)
+        {
+            return GetMetaDataEndPointAdress(name, profile, version);
         }
 
         public string GetMetaDataEndPointAdress(string name, string profile, decimal? version = null)

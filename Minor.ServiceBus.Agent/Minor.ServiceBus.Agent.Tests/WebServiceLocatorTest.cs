@@ -11,10 +11,10 @@ namespace Minor.ServiceBus.Agent.Tests
         public void WebServiceLocator_Bestaat()
         {
             //Arrange
-            var webServiceLocator = new WebServiceLocator("http://www.test.nl", "basicHttpBinding");
+            var webServiceLocator = new WebServiceLocator<IKlant>("http://www.test.nl", "basicHttpBinding");
 
             //Assert
-            Assert.IsInstanceOfType(webServiceLocator, typeof(WebServiceLocator));
+            Assert.IsInstanceOfType(webServiceLocator, typeof(WebServiceLocator<IKlant>));
         }
     }
 }
