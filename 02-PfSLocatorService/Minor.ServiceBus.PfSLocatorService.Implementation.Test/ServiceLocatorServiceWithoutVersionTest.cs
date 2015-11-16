@@ -37,7 +37,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<ServiceLocationServiceFault>))]
+        [ExpectedException(typeof(FunctionalException))]
         public void FindMetadataEndpointAddress_WithoutVersion_FoundMultiple()
         {
             // Arrange
@@ -62,7 +62,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<ServiceLocationServiceFault>))]
+        [ExpectedException(typeof(FunctionalException))]
         public void FindMetadataEndpointAddress_WithoutVersion_FoundNone()
         {
             // Arrange
@@ -87,7 +87,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<ServiceLocationServiceFault>))]
+        [ExpectedException(typeof(FunctionalException))]
         public void FindMetadataEndpointAddress_WithoutVersion_FoundVersion()
         {
             // Arrange
