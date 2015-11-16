@@ -16,7 +16,7 @@ namespace Minor.ServiceBus.Frontend.Site
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Klant", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
