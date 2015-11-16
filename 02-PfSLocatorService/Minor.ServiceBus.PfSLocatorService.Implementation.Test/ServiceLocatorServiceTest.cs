@@ -11,7 +11,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
     public class ServiceLocatorServiceTest
     {
         [TestMethod]
-        [ExpectedException(typeof(FaultException<ServiceLocationServiceFault>))]
+        [ExpectedException(typeof(FaultException<FunctionalException>))]
         public void FindMetadataEndpointAddress_NoName()
         {
             // Arrange
@@ -26,7 +26,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
             };
 
             var mock = new Mock<IServiceLocationDataMapper>(MockBehavior.Strict);
-            
+            mock.Setup(m => m.FindMetadataEndpointAddress(name, profile, version)).Returns("");
             var target = new ServiceLocatorService(mock.Object);
 
             // Act
@@ -37,7 +37,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<ServiceLocationServiceFault>))]
+        [ExpectedException(typeof(FaultException<FunctionalException>))]
         public void FindMetadataEndpointAddress_NoProfile()
         {
             // Arrange
@@ -63,7 +63,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<ServiceLocationServiceFault>))]
+        [ExpectedException(typeof(FaultException<FunctionalException>))]
         public void FindMetadataEndpointAddress_EmptyName()
         {
             // Arrange
@@ -89,7 +89,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<ServiceLocationServiceFault>))]
+        [ExpectedException(typeof(FaultException<FunctionalException>))]
         public void FindMetadataEndpointAddress_EmptyProfile()
         {
             // Arrange

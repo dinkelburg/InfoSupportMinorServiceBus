@@ -74,6 +74,8 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation
             {
                 throw new FunctionalException() { Errors = errorList };
             }
+
+            return null;
         }
     }
 }
