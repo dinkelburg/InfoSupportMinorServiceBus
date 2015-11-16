@@ -3,7 +3,7 @@
   <wsdl:types>
     <xsd:schema targetNamespace="urn:minor:servicebus:pfslocatorservice/Imports">
       <xsd:import namespace="urn:minor:servicebus:pfslocatorservice" />
-      <xsd:import namespace="urn:minor:servicebus:pfslocatorservice:servicefault" />
+      <xsd:import namespace="urn:minor:servicebus:pfslocatorservice:functionalerror" />
       <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import namespace="urn:minor:servicebus:pfslocatorservice:schema" />
     </xsd:schema>
@@ -14,14 +14,14 @@
   <wsdl:message name="IServiceLocatorService_FindMetadataEndpointAddress_OutputMessage">
     <wsdl:part name="parameters" element="tns:FindMetadataEndpointAddressResponse" />
   </wsdl:message>
-  <wsdl:message name="IServiceLocatorService_FindMetadataEndpointAddress_ServiceLocationServiceFaultFault_FaultMessage">
-    <wsdl:part name="detail" xmlns:q1="urn:minor:servicebus:pfslocatorservice:servicefault" element="q1:ServiceLocationServiceFault" />
+  <wsdl:message name="IServiceLocatorService_FindMetadataEndpointAddress_FunctionalErrorListFault_FaultMessage">
+    <wsdl:part name="detail" xmlns:q1="urn:minor:servicebus:pfslocatorservice:functionalerror" element="q1:FunctionalErrorList" />
   </wsdl:message>
   <wsdl:portType name="IServiceLocatorService">
     <wsdl:operation name="FindMetadataEndpointAddress">
       <wsdl:input wsaw:Action="urn:minor:servicebus:pfslocatorservice/IServiceLocatorService/FindMetadataEndpointAddress" message="tns:IServiceLocatorService_FindMetadataEndpointAddress_InputMessage" />
       <wsdl:output wsaw:Action="urn:minor:servicebus:pfslocatorservice/IServiceLocatorService/FindMetadataEndpointAddressResponse" message="tns:IServiceLocatorService_FindMetadataEndpointAddress_OutputMessage" />
-      <wsdl:fault wsaw:Action="urn:minor:servicebus:pfslocatorservice/IServiceLocatorService/FindMetadataEndpointAddressServiceLocationServiceFaultFault" name="ServiceLocationServiceFaultFault" message="tns:IServiceLocatorService_FindMetadataEndpointAddress_ServiceLocationServiceFaultFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="urn:minor:servicebus:pfslocatorservice/IServiceLocatorService/FindMetadataEndpointAddressFunctionalErrorListFault" name="FunctionalErrorListFault" message="tns:IServiceLocatorService_FindMetadataEndpointAddress_FunctionalErrorListFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="DefaultBinding_IServiceLocatorService" type="tns:IServiceLocatorService">
@@ -34,8 +34,8 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="ServiceLocationServiceFaultFault">
-        <soap:fault name="ServiceLocationServiceFaultFault" use="literal" />
+      <wsdl:fault name="FunctionalErrorListFault">
+        <soap:fault name="FunctionalErrorListFault" use="literal" />
       </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>

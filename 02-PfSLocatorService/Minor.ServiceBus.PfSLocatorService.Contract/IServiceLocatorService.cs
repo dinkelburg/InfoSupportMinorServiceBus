@@ -7,7 +7,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Contract
     public interface IServiceLocatorService
     {
         [OperationContract]
-        [FaultContract(typeof(ServiceLocationServiceFault))]
+        [FaultContract(typeof(FunctionalErrorList))]
         string FindMetadataEndpointAddress(ServiceLocation serviceLocation);
     }
 }

@@ -27,14 +27,14 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation
 
         public string FindMetadataEndpointAddress(Contract.DTO.ServiceLocation serviceLocation)
         {
-            if (serviceLocation.Name == null || 
-                serviceLocation.Profile == null || 
-                serviceLocation.Name == "" ||
-                serviceLocation.Profile == "")
+            FunctionalErrorList errorList = new FunctionalErrorList();
+            if (serviceLocation.Name == null || serviceLocation.Profile == null || 
+                serviceLocation.Name == "" || serviceLocation.Profile == "")
             {
-                throw new FaultException<ServiceLocationServiceFault>(
-                    new ServiceLocationServiceFault("Name or Profile is null"));
-                //return "Name or Profile is null";
+                errorList.Add(new FunctionalErrorDetail
+                {
+                    Message = "Name or Profile is null"
+                });
             }
             
             try
@@ -47,21 +47,32 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation
             }
             catch (MultipleRecordsFoundException ex)
             {
-                throw new FaultException<ServiceLocationServiceFault>(
-                    new ServiceLocationServiceFault(ex.Message));
-                //return ex.Message;
+                errorList.Add(new FunctionalErrorDetail
+                {
+                    Message = ex.Message,
+                    Data = ex.Data
+                });
             }
             catch (NoRecordsFoundException ex)
             {
-                throw new FaultException<ServiceLocationServiceFault>(
-                    new ServiceLocationServiceFault(ex.Message));
-                //return ex.Message;
+                errorList.Add(new FunctionalErrorDetail
+                {
+                    Message = ex.Message,
+                    Data = ex.Data
+                });
             }
             catch (VersionedRecordFoundException ex)
             {
-                throw new FaultException<ServiceLocationServiceFault>(
-                    new ServiceLocationServiceFault(ex.Message));
-                //return ex.Message;
+                errorList.Add(new FunctionalErrorDetail
+                {
+                    Message = ex.Message,
+                    Data = ex.Data
+                });
+            }
+
+            if (errorList.HasErrors)
+            {
+                throw new FunctionalException() { Errors = errorList };
             }
         }
     }
