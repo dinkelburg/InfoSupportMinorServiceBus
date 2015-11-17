@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04 - Implementation.Test", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06 - DAL.Test", "Minor.ServiceBus.PfSLocatorService.DAL.Test\06 - DAL.Test.csproj", "{D9EAF28B-951E-49D9-B23B-662BEEE0F6CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minor.ServiceBus.PfSLocatorService.IntegratieTest", "Minor.ServiceBus.PfSLocatorService.IntegratieTest\Minor.ServiceBus.PfSLocatorService.IntegratieTest.csproj", "{09040010-989C-42E5-8D4B-045B3DB68F41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07 - Integratie", "Minor.ServiceBus.PfSLocatorService.IntegratieTest\07 - Integratie.csproj", "{09040010-989C-42E5-8D4B-045B3DB68F41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

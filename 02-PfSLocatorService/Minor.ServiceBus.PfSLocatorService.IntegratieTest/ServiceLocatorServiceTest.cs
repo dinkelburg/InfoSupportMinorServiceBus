@@ -15,6 +15,7 @@ namespace Minor.ServiceBus.PfSLocatorService.IntegratieTest
     {
 
         static private ServiceHost _host;
+        private ChannelFactory<IServiceLocatorService> _factory;
 
         [ClassInitialize()]
         public static void Initialize(TestContext context)
@@ -33,11 +34,35 @@ namespace Minor.ServiceBus.PfSLocatorService.IntegratieTest
         {
             _host.Close();
         }
+        
+        [TestInitialize]
+        public void TestInitialize()
+        {
+            EndpointAddress address = new EndpointAddress("net.pipe://localhost/ServiceLocatorService");
+            Binding binding = new NetNamedPipeBinding();
 
-
+            _factory = new ChannelFactory<IServiceLocatorService>(binding, address);
+        }
 
         [TestMethod]
-        public void FindMetadataEndpointAddress_WithoutVersion_Integration()
+        public void Integration_FindMetaEA_WithVersion()
+        {
+            ServiceLocation serviceLocation = new ServiceLocation
+            {
+                Name = "BSCurusadministatie",
+                Profile = "Production"
+            };
+            
+
+            IServiceLocatorService proxy = _factory.CreateChannel();
+
+            string uri = proxy.FindMetadataEndpointAddress(serviceLocation);
+
+            Assert.AreEqual("http://infosupport.intranet/CAS", uri);
+        }
+
+        [TestMethod]
+        public void Integration_FindMetaEA_WithoutVersion_Integration()
         {
             ServiceLocation serviceLocation = new ServiceLocation
             {
@@ -45,12 +70,9 @@ namespace Minor.ServiceBus.PfSLocatorService.IntegratieTest
                 Profile = "Acceptation",
                 Version = 1.0M
             };
-            EndpointAddress address = new EndpointAddress("net.pipe://localhost/ServiceLocatorService");
-            Binding binding = new NetNamedPipeBinding();
 
-            var factory = new ChannelFactory<IServiceLocatorService>(binding, address);
 
-            IServiceLocatorService proxy = factory.CreateChannel();
+            IServiceLocatorService proxy = _factory.CreateChannel();
 
             string uri = proxy.FindMetadataEndpointAddress(serviceLocation);
 

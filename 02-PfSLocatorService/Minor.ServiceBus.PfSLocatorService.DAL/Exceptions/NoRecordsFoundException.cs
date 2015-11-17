@@ -7,7 +7,7 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL.Exceptions
     public class NoRecordsFoundException : Exception
     {
         public NoRecordsFoundException()
-        {
+        {            
         }
 
         public NoRecordsFoundException(string message) : base(message)
