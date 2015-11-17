@@ -43,35 +43,71 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL
         public string GetMetaDataEndPointAdress(string name, string profile, decimal? version = null)
         {
             var data = LoadXMLFile<locationData>();
+            var serviceLocationList = new List<string>();
             foreach (var servicelocation in data.serviceLocation)
             {
                 if (version != null)
                 {
-                    if (servicelocation.name == name
-                        && servicelocation.profile == profile
-                        && servicelocation.version == version)
+                    if (servicelocation.name == name && 
+                        servicelocation.profile == profile &&
+                        servicelocation.version == version)
                     {
-                        return servicelocation.metadataAddress;
+                        serviceLocationList.Add(servicelocation.metadataAddress);
                     }
-                }
-                if (servicelocation.name == name && servicelocation.profile == profile)
+                } else if (servicelocation.name == name && servicelocation.profile == profile)
                 {
-                    return servicelocation.metadataAddress;
+                    if (servicelocation.version != null)
+                    {
+                        throw new VersionedRecordFoundException("The location service found has a version, so specify the version");
+                }
+                    serviceLocationList.Add(servicelocation.metadataAddress);
                 }
             }
-            throw new NoRecordsFoundException("The given service location doesn't exists inside of the given xml file.");
+            switch (serviceLocationList.Count())
+                {
+                case 0:
+                    throw new NoRecordsFoundException("No location services found");
+                case 1:
+                    return serviceLocationList.First();
+                default:
+                    throw new MultipleRecordsFoundException("Multiple location services found instead of one");
+            }
         }
 
         public T LoadXMLFile<T>()
         {
             string relativePath = @"C:\TFS\LeviS\EsraRubenLevi\02-PfSLocatorService\Minor.ServiceBus.PfSLocatorService.DAL\XML\" + _filePath;
 
+            string relativePath2 = @"C:\TFS\LeviS\EsraRubenLevi\02-PfSLocatorService\Minor.ServiceBus.PfSLocatorService.DAL\XML\" + _filePath;
+            string path = MakeAbsolutePath(_filePath);
             XmlSerializer serializer = new XmlSerializer(typeof(locationData));
-            using (StreamReader reader = new StreamReader(relativePath))
+            using (StreamReader reader = new StreamReader(path))
             {
                 var data = serializer.Deserialize(reader);
                 return (T)data;
             }
+        }
+
+        private string MakeAbsolutePath(string relativePath)
+        {
+            string defaultPath = @"..\..\Minor.ServiceBus.PfSLocatorService.DAL\";
+            string path = null;
+
+            if (HttpContext.Current != null)
+            {
+                path = HttpContext.Current.Server.MapPath(relativePath);
+            }
+            else
+            {
+                string executionFolder = new DirectoryInfo(Directory.GetCurrentDirectory()).Name;
+                if (executionFolder == "Debug" || executionFolder == "Release")
+                {
+                    defaultPath = Path.Combine(@"..\", defaultPath);
+                }
+                path = Path.Combine(Directory.GetCurrentDirectory(), defaultPath, relativePath);
+            }
+
+            return path;
         }
     }
 }

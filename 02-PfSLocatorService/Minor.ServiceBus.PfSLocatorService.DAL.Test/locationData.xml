@@ -11,6 +11,11 @@
     <metadataAddress>http://infosupport.intranet/CAS</metadataAddress>
   </serviceLocation>
   <serviceLocation>
+    <name>BSCursusadministatie</name>
+    <profile>Production</profile>
+    <metadataAddress>http://infosupport.intranet/CAS</metadataAddress>
+  </serviceLocation>
+  <serviceLocation>
     <name>PcSPlanningmaken</name>
     <profile>Acceptation</profile>
     <version>1.0</version>
@@ -18,6 +23,12 @@
   </serviceLocation>
   <serviceLocation>
     <name>PcSPlanningmaken</name>
+    <profile>Acceptation</profile>
+    <version>1.2</version>
+    <metadataAddress>http://infosupport.test/CAS12</metadataAddress>
+  </serviceLocation>
+  <serviceLocation>
+    <name>BSFinancienAdministratie</name>
     <profile>Acceptation</profile>
     <version>1.2</version>
     <metadataAddress>http://infosupport.test/CAS12</metadataAddress>

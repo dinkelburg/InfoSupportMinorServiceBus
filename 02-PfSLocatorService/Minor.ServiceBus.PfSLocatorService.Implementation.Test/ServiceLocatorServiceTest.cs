@@ -11,8 +11,8 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
     public class ServiceLocatorServiceTest
     {
         [TestMethod]
-        [ExpectedException(typeof(FunctionalException))]
-        public void FindMetadataEndpointAddress_NoName()
+        [ExpectedException(typeof(FaultException<FunctionalErrorList>))]
+        public void FindMetaEA_NoName()
         {
             // Arrange
             string name = null;
@@ -36,7 +36,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
         }
 
         [TestMethod]
-        public void FindMetadataEndpointAddress_NoName_ExcMessage()
+        public void FindMetaEA_NoName_ExcMessage()
         {
             // Arrange
             string name = null;
@@ -57,17 +57,17 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
             {
                 var result = target.FindMetadataEndpointAddress(serviceLocation);
             }
-            catch (FunctionalException ex)
+            catch (FaultException<FunctionalErrorList> ex)
             {
                 // Assert
-                Assert.AreEqual(1, ex.Errors.Details.Length);
-                Assert.AreEqual("Name or Profile is null", ex.Errors.Details[0].Message);   
+                Assert.AreEqual(1, ex.Detail.Details.Length);
+                Assert.AreEqual("Name or Profile is null", ex.Detail.Details[0].Message);   
             }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FunctionalException))]
-        public void FindMetadataEndpointAddress_NoProfile()
+        [ExpectedException(typeof(FaultException<FunctionalErrorList>))]
+        public void FindMetaEA_NoProfile()
         {
             // Arrange
             string name = "BSKlantBeheer";
@@ -92,7 +92,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
         }
 
         [TestMethod]
-        public void FindMetadataEndpointAddress_NoProfile_ExcMessage()
+        public void FindMetaEA_NoProfile_ExcMessage()
         {
             // Arrange
             string name = "BSKlantBeheer";
@@ -114,17 +114,17 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
             {
                 var result = target.FindMetadataEndpointAddress(serviceLocation);
             }
-            catch (FunctionalException ex)
+            catch (FaultException<FunctionalErrorList> ex)
             {
                 // Assert
-                Assert.AreEqual(1, ex.Errors.Details.Length);
-                Assert.AreEqual("Name or Profile is null", ex.Errors.Details[0].Message);
+                Assert.AreEqual(1, ex.Detail.Details.Length);
+                Assert.AreEqual("Name or Profile is null", ex.Detail.Details[0].Message);
             }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FunctionalException))]
-        public void FindMetadataEndpointAddress_EmptyName()
+        [ExpectedException(typeof(FaultException<FunctionalErrorList>))]
+        public void FindMetaEA_EmptyName()
         {
             // Arrange
             string name = "";
@@ -149,7 +149,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
         }
 
         [TestMethod]
-        public void FindMetadataEndpointAddress_EmptyName_ExcMessage()
+        public void FindMetaEA_EmptyName_ExcMessage()
         {
             // Arrange
             string name = "";
@@ -171,17 +171,17 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
             {
                 var result = target.FindMetadataEndpointAddress(serviceLocation);
             }
-            catch (FunctionalException ex)
+            catch (FaultException<FunctionalErrorList> ex)
             {
                 // Assert
-                Assert.AreEqual(1, ex.Errors.Details.Length);
-                Assert.AreEqual("Name or Profile is null", ex.Errors.Details[0].Message);
+                Assert.AreEqual(1, ex.Detail.Details.Length);
+                Assert.AreEqual("Name or Profile is null", ex.Detail.Details[0].Message);
             }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FunctionalException))]
-        public void FindMetadataEndpointAddress_EmptyProfile()
+        [ExpectedException(typeof(FaultException<FunctionalErrorList>))]
+        public void FindMetaEA_EmptyProfile()
         {
             // Arrange
             string name = "BSBeheerService";
@@ -206,7 +206,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
         }
 
         [TestMethod]
-        public void FindMetadataEndpointAddress_EmptyProfile_ExcMessage()
+        public void FindMetaEA_EmptyProfile_ExcMessage()
         {
             // Arrange
             string name = "BSBeheerService";
@@ -228,11 +228,11 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
             {
                 var result = target.FindMetadataEndpointAddress(serviceLocation);
             }
-            catch (FunctionalException ex)
+            catch (FaultException<FunctionalErrorList> ex)
             {
                 // Assert
-                Assert.AreEqual(1, ex.Errors.Details.Length);
-                Assert.AreEqual("Name or Profile is null", ex.Errors.Details[0].Message);
+                Assert.AreEqual(1, ex.Detail.Details.Length);
+                Assert.AreEqual("Name or Profile is null", ex.Detail.Details[0].Message);
             }
         }
     }

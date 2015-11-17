@@ -17,7 +17,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation
 
         public ServiceLocatorService()
         {
-            _datamapper = new ServiceLocationXMLDataMapper("locationData.xml");
+            _datamapper = new ServiceLocationXMLDataMapper(@"XML\locationData.xml");
         }
 
         public ServiceLocatorService(DAL.IServiceLocationDataMapper datamapper)
@@ -35,7 +35,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation
                 {
                     Message = "Name or Profile is null"
                 });
-                throw new FunctionalException() { Errors = errorList };
+                throw new FaultException<FunctionalErrorList>(errorList);
             }
             
             try
@@ -73,7 +73,8 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation
 
             if (errorList.HasErrors)
             {
-                throw new FunctionalException() { Errors = errorList };
+                //throw new FunctionalException() { Errors = errorList };
+                throw new FaultException<FunctionalErrorList>(errorList);
             }
 
             return null;
