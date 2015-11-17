@@ -21,20 +21,20 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL.Test
         public void GetMexAdressMetNaamEnProfiel()
         {
             //Arrange
-            var fileServiceLocator = new ServiceLocationXMLDataMapper("../../locationData.xml");
+            var fileServiceLocator = new ServiceLocationXMLDataMapper(@"..\Minor.ServiceBus.PfSLocatorService.DAL.Test\locationData.xml");
 
             //Act
-            var adress = fileServiceLocator.FindMetadataEndpointAddress("BSCursusadministatie", "Production");
+            var adress = fileServiceLocator.FindMetadataEndpointAddress("BSKlantbeheer", "Development");
 
             //Assert
-            Assert.AreEqual("http://infosupport.intranet/CAS", adress);
+            Assert.AreEqual("http://localhost:30412/BSKlantbeheer/mex", adress);
         }
 
         [TestMethod]
         public void GetMexAdressMetNaamEnProfielEnVersion()
         {
             //Arrange
-            var fileServiceLocator = new ServiceLocationXMLDataMapper("../../locationData.xml");
+            var fileServiceLocator = new ServiceLocationXMLDataMapper(@"..\Minor.ServiceBus.PfSLocatorService.DAL.Test\locationData.xml");
 
             //Act
             var adress = fileServiceLocator.FindMetadataEndpointAddress("PcSPlanningmaken", "Acceptation", 1.0m);
@@ -55,6 +55,84 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL.Test
 
             //Assert
             Assert.AreEqual("http://infosupport.intranet/CAS/mex", adress);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(MultipleRecordsFoundException))]
+        public void GetMexAdress_WithoutVersion_MultipleRecordsFound()
+        {
+            //Arrange
+            var fileServiceLocator = new ServiceLocationXMLDataMapper(@"..\Minor.ServiceBus.PfSLocatorService.DAL.Test\locationData.xml");
+
+            //Act
+            var adress = fileServiceLocator.FindMetadataEndpointAddress("BSCursusadministatie", "Production");
+
+            //Assert
+            //Exception thrown
+        }
+
+        [TestMethod]
+        public void GetMexAdress_WithoutVersion_MultipleRecordsFound_ExcMessage()
+        {
+            //Arrange
+            var fileServiceLocator = new ServiceLocationXMLDataMapper(@"..\Minor.ServiceBus.PfSLocatorService.DAL.Test\locationData.xml");
+
+            try
+            {
+                //Act
+                var adress = fileServiceLocator.FindMetadataEndpointAddress("BSCursusadministatie", "Production");
+            }
+            catch (MultipleRecordsFoundException ex)
+            {
+                //Assert
+                Assert.AreEqual("Multiple location services found instead of one", ex.Message);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NoRecordsFoundException))]
+        public void GetMexAdress_WithoutVersion_NoRecordsFound()
+        {
+            //Arrange
+            var fileServiceLocator = new ServiceLocationXMLDataMapper(@"..\Minor.ServiceBus.PfSLocatorService.DAL.Test\locationData.xml");
+
+            //Act
+            var adress = fileServiceLocator.FindMetadataEndpointAddress("BSCursusafsadfs", "Prodduction");
+
+            //Assert
+            //Exception thrown
+        }
+
+        [TestMethod]
+        public void GetMexAdress_WithoutVersion_NoRecordsFound_ExcMessage()
+        {
+            //Arrange
+            var fileServiceLocator = new ServiceLocationXMLDataMapper(@"..\Minor.ServiceBus.PfSLocatorService.DAL.Test\locationData.xml");
+
+            try
+            {
+                //Act
+                var adress = fileServiceLocator.FindMetadataEndpointAddress("BSCursusafsadfs", "Prodduction");
+            }
+            catch (NoRecordsFoundException ex)
+            {
+                //Assert
+                Assert.AreEqual("No location services found", ex.Message);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(VersionedRecordFoundException))]
+        public void GetMexAdress_WithoutVersion_VersionedRecordFound()
+        {
+            //Arrange
+            var fileServiceLocator = new ServiceLocationXMLDataMapper(@"..\Minor.ServiceBus.PfSLocatorService.DAL.Test\locationData.xml");
+
+            //Act
+            var adress = fileServiceLocator.FindMetadataEndpointAddress("BSCursusafsadfs", "Prodduction");
+
+            //Assert
+            //Exception thrown
         }
     }
 }

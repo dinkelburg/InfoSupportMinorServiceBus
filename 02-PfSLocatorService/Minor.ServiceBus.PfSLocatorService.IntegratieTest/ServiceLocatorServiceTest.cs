@@ -53,12 +53,11 @@ namespace Minor.ServiceBus.PfSLocatorService.IntegratieTest
                 Profile = "Production"
             };
             
-
             IServiceLocatorService proxy = _factory.CreateChannel();
 
             string uri = proxy.FindMetadataEndpointAddress(serviceLocation);
 
-            Assert.AreEqual("http://infosupport.intranet/CAS", uri);
+            Assert.AreEqual("http://infosupport.intranet/CAS/mex", uri);
         }
 
         [TestMethod]
@@ -76,7 +75,7 @@ namespace Minor.ServiceBus.PfSLocatorService.IntegratieTest
 
             string uri = proxy.FindMetadataEndpointAddress(serviceLocation);
 
-            Assert.AreEqual("http://infosupport.test/CAS", uri);
+            Assert.AreEqual("http://infosupport.test/CAS/metadata", uri);
         }
     }
 }

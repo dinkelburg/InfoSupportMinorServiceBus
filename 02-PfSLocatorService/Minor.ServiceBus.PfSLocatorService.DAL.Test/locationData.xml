@@ -27,4 +27,10 @@
     <version>1.2</version>
     <metadataAddress>http://infosupport.test/CAS12</metadataAddress>
   </serviceLocation>
+  <serviceLocation>
+    <name>BSFinancienAdministratie</name>
+    <profile>Acceptation</profile>
+    <version>1.2</version>
+    <metadataAddress>http://infosupport.test/CAS12</metadataAddress>
+  </serviceLocation>
 </locationData>

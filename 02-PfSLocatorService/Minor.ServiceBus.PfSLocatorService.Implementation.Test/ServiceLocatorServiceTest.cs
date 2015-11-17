@@ -60,7 +60,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
             catch (FaultException<FunctionalErrorList> ex)
             {
                 // Assert
-                Assert.AreEqual(1, ex.Detail);
+                Assert.AreEqual(1, ex.Detail.Details.Length);
                 Assert.AreEqual("Name or Profile is null", ex.Detail.Details[0].Message);   
             }
         }
@@ -114,11 +114,11 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
             {
                 var result = target.FindMetadataEndpointAddress(serviceLocation);
             }
-            catch (FunctionalException ex)
+            catch (FaultException<FunctionalErrorList> ex)
             {
                 // Assert
-                Assert.AreEqual(1, ex.Errors.Details.Length);
-                Assert.AreEqual("Name or Profile is null", ex.Errors.Details[0].Message);
+                Assert.AreEqual(1, ex.Detail.Details.Length);
+                Assert.AreEqual("Name or Profile is null", ex.Detail.Details[0].Message);
             }
         }
 

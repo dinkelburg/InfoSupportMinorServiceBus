@@ -52,15 +52,14 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL
                         servicelocation.profile == profile &&
                         servicelocation.version == version)
                     {
-                        if (servicelocation.version != null)
-                        {
-                            throw new VersionedRecordFoundException("The location service found has a version, so specify the version");
-                        }
                         serviceLocationList.Add(servicelocation.metadataAddress);
                     }
-                }
-                if (servicelocation.name == name && servicelocation.profile == profile)
+                } else if (servicelocation.name == name && servicelocation.profile == profile)
                 {
+                    if (servicelocation.version != null)
+                    {
+                        throw new VersionedRecordFoundException("The location service found has a version, so specify the version");
+                    }
                     serviceLocationList.Add(servicelocation.metadataAddress);
                 }
             }
@@ -79,19 +78,20 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL
         {
             //string relativePath = Path.Combine(Directory.GetCurrentDirectory(), _filePath);
             //relativePath = MakeAbsolutePath(_filePath);
-
+            
             string relativePath2 = @"C:\TFS\LeviS\EsraRubenLevi\02-PfSLocatorService\Minor.ServiceBus.PfSLocatorService.DAL\XML\" + _filePath;
-
+            string path = MakeAbsolutePath(_filePath);
             XmlSerializer serializer = new XmlSerializer(typeof(locationData));
-            using (StreamReader reader = new StreamReader(relativePath2))
+            using (StreamReader reader = new StreamReader(path))
             {
                 var data = serializer.Deserialize(reader);
                 return (T)data;
             }
         }
 
-        public string MakeAbsolutePath(string relativePath)
+        private string MakeAbsolutePath(string relativePath)
         {
+            string defaultPath = @"..\..\Minor.ServiceBus.PfSLocatorService.DAL\";
             string path = null;
 
             if (HttpContext.Current != null)
@@ -100,7 +100,12 @@ namespace Minor.ServiceBus.PfSLocatorService.DAL
             }
             else
             {
-                path = Path.Combine(Directory.GetCurrentDirectory(), relativePath);
+                string executionFolder = new DirectoryInfo(Directory.GetCurrentDirectory()).Name;
+                if (executionFolder == "Debug" || executionFolder == "Release")
+                {
+                    defaultPath = Path.Combine(@"..\", defaultPath);
+                }
+                path = Path.Combine(Directory.GetCurrentDirectory(), defaultPath, relativePath);
             }
 
             return path;
