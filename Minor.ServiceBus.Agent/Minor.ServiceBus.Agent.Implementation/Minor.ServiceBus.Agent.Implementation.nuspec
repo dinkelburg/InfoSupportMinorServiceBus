@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>AgentServiceBus</id>
+    <version>1.0.0.0</version>
+    <title>Agent ServiceBus</title>
+    <authors>Levi, Ruben en Esra</authors>
+    <owners>Info Support</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Agent voor de servicebus.</description>
+    <copyright>Copyright 2015</copyright>
+    <tags>ServiceBus Agent</tags>
+  </metadata>
+</package>
