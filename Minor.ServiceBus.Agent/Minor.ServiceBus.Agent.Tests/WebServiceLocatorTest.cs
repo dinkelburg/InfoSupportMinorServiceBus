@@ -16,5 +16,13 @@ namespace Minor.ServiceBus.Agent.Tests
             //Assert
             Assert.IsInstanceOfType(webServiceLocator, typeof(WebServiceLocator<IKlant>));
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(BindingNotSupportedException))]
+        public void WebServiceLocator_BevatEenBindingDieNietOndersteundWordt()
+        {
+            //Arrange
+            var webServiceLocator = new WebServiceLocator<IKlant>("http://www.test.nl", "basicHttpsBinding");
+        }
     }
 }

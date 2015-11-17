@@ -25,16 +25,6 @@ namespace Minor.ServiceBus.Agent.Tests
         }
 
         [TestMethod]
-        public void ServiceFactory_HaaltConfigSectionOp()
-        {
-            //Arrange
-            var serviceFactory = new ServiceFactory<IKlant>("BSBeheerKlant");
-
-            //Assert
-            Assert.AreEqual(serviceFactory._config.Active, "fileServiceLocator");
-        }
-
-        [TestMethod]
         public void ServiceFactory_GebruiktFileServiceLocator()
         {
             //Arrange
@@ -66,22 +56,11 @@ namespace Minor.ServiceBus.Agent.Tests
             //Arrange
             var config = new ServiceLocatorConfigSection();
             config.Active = "unknownServiceLocator";
+
             var serviceFactory = new ServiceFactory<IKlant>("BSBeheerKlant", config);
 
             //Assert
             Assert.IsInstanceOfType(serviceFactory.ServiceLocator, typeof(WebServiceLocator<IKlant>));
         }
-
-
-        //var mock = new Mock<IKlant>(MockBehavior.Strict);
-
-        //var target = new CursusController(mock.Object);
-
-        //// Act
-        //target.InsertOrUpdate(cursus);
-
-        //// Assert
-        //mock.Verify(m => m.Update(cursus), Times.Once);
-
     }
 }

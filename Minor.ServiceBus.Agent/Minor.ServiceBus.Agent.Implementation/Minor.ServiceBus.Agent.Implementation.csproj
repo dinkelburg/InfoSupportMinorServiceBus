@@ -20,6 +20,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,18 +46,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\BindingNotSupportedException.cs" />
     <Compile Include="Exceptions\FilePathNotDefinedException.cs" />
     <Compile Include="FileServiceLocator.cs" />
     <Compile Include="IServiceLocator.cs" />
     <Compile Include="minorservicebuspfslocatorservice.cs" />
+    <Compile Include="Exceptions\MultipleRecordsFoundException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceFactory.cs" />
+    <Compile Include="Exceptions\ServiceLocationDoesntExistsException.cs" />
     <Compile Include="ServiceLocation.cs">
       <DependentUpon>ServiceLocation.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Exceptions\ServiceLocationDoesntExistsException.cs" />
     <Compile Include="ServiceLocatorConfigSection.cs" />
     <Compile Include="Exceptions\UnknownServiceLocatorException.cs" />
+    <Compile Include="Exceptions\VersionRecordFoundException.cs" />
     <Compile Include="WebServiceLocator.cs" />
   </ItemGroup>
   <ItemGroup>

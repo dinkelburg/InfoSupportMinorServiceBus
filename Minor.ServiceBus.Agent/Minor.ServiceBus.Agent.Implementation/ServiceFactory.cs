@@ -16,7 +16,7 @@ namespace Minor.ServiceBus.Agent.Implementation
         private Dictionary<Uri, ChannelFactory<TContract>> _cache =
             new Dictionary<Uri, ChannelFactory<TContract>>();
 
-        public ServiceLocatorConfigSection _config;
+        private ServiceLocatorConfigSection _config;
 
         public IServiceLocator ServiceLocator { get; set; }
 

@@ -36,30 +36,57 @@ namespace Minor.ServiceBus.Agent.Implementation
             return GetMetaDataEndPointAdress(name, profile, version);
         }
 
-        public string GetMetaDataEndPointAdress(string name, string profile, decimal? version = null)
+        /// <summary>
+        /// Get the metadata endpoint adress from the XML file. 
+        /// </summary>
+        /// <param name="name" type="string"></param>
+        /// <param name="profile" type="string"></param>
+        /// <param name="version" type="decimal?"></param>
+        /// <returns></returns>
+        private string GetMetaDataEndPointAdress(string name, string profile, decimal? version = null)
         {
-            var data = LoadXMLFile<locationData>();
-            foreach (var servicelocation in data.serviceLocation)
+            var data = LoadXMLFile<locationData>(); //get XML data from the XML file
+            var serviceLocationList = new List<string>();
+            foreach (var serviceLocation in data.serviceLocation)
             {
                 if(version != null)
                 {
-                    if (servicelocation.name == name 
-                        && servicelocation.profile == profile
-                        && servicelocation.version == version)
+                    if (serviceLocation.name == name &&
+                        serviceLocation.profile == profile &&
+                        serviceLocation.version == version)
                     {
-                        return servicelocation.metadataAddress;
+                        serviceLocationList.Add(serviceLocation.metadataAddress);
                     }
                 }
-                if (servicelocation.name == name && servicelocation.profile == profile)
-                {
-                    return servicelocation.metadataAddress;
+                else { 
+                    if (serviceLocation.name == name &&
+                        serviceLocation.profile == profile)
+                    {
+                        if(serviceLocation.version != null)
+                        {
+                            throw new VersionRecordFoundException("A record has been found with a version, you need to specify the version.");
+                        }
+                        serviceLocationList.Add(serviceLocation.metadataAddress);
+                    }
                 }
             }
-            throw new ServiceLocationDoesntExistsException("The given service location doesn't exists inside of the given xml file.");
+            switch(serviceLocationList.Count())
+            {
+                case 0:
+                    throw new ServiceLocationDoesntExistsException("The given service location doesn't exists inside of the given xml file.");
+                case 1:
+                    throw new MultipleRecordsFoundException("Multiple records has been found!");
+            }
+
+            return serviceLocationList[0];
         }
 
-        public T LoadXMLFile<T>() {
-
+        /// <summary>
+        /// Load the XML file for the given filePath.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns><T>object</returns>
+        private T LoadXMLFile<T>() {
             string relativePath = _filePath;
             if (_filePath.StartsWith("~"))
             {

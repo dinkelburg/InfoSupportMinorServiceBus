@@ -19,7 +19,7 @@ namespace Minor.ServiceBus.Agent.Tests
         }
 
         [TestMethod]
-        public void GetMexAdressMetNaamEnProfiel()
+        public void FileServiceLocatorTest_GetMexAdressMetNaamEnProfiel()
         {
             //Arrange
             var fileServiceLocator = new FileServiceLocator("../../locationData.xml");
@@ -32,7 +32,21 @@ namespace Minor.ServiceBus.Agent.Tests
         }
 
         [TestMethod]
-        public void GetMexAdressMetNaamEnProfielEnVersion()
+        public void FileServiceLocatorTest_GetMexAdressMetNaamEnProfielEnVersion()
+        {
+            //Arrange
+            var fileServiceLocator = new FileServiceLocator("../../locationData.xml");
+
+            //Act
+            var adress = fileServiceLocator.FindMetadataEndpointAddress("PcSPlanningmaken", "Acceptation", 1.0m);
+
+            //Assert
+            Assert.AreEqual("http://infosupport.test/CAS/metadata", adress);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ServiceLocationDoesntExistsException))]
+        public void FileServiceLocatorTest_ServiceLocationVersionBestaatNiet()
         {
             //Arrange
             var fileServiceLocator = new FileServiceLocator("../../locationData.xml");
@@ -45,8 +59,22 @@ namespace Minor.ServiceBus.Agent.Tests
         }
 
         [TestMethod]
+        [ExpectedException(typeof(VersionRecordFoundException))]
+        public void FileServiceLocatorTest_RecordGevondenMetEenVersion()
+        {
+            //Arrange
+            var fileServiceLocator = new FileServiceLocator("../../locationData.xml");
+
+            //Act
+            var adress = fileServiceLocator.FindMetadataEndpointAddress("PcSPlanningmaken", "Acceptation");
+
+            //Assert
+            Assert.AreEqual("http://infosupport.intranet/CAS/mex", adress);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(FilePathNotDefinedException))]
-        public void PathfileIsEmptyString_En_Verwacht_FilePathNotDefinedException()
+        public void FileServiceLocatorTest_PathfileIsEmptyString_En_Verwacht_FilePathNotDefinedException()
         {
             //Arrange
             var fileServiceLocator = new FileServiceLocator("");

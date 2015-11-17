@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using minor.servicebus.pfslocatorservice.schema;
 using System.ServiceModel.Description;
+using System.Runtime.Serialization;
 
 namespace Minor.ServiceBus.Agent.Implementation
 {
@@ -23,7 +24,7 @@ namespace Minor.ServiceBus.Agent.Implementation
                 _binding = new BasicHttpBinding();
             } else
             {
-                throw new Exception("No implementation found for binding: " + binding);
+                throw new BindingNotSupportedException("No implementation found for binding: " + binding);
             }    
         }
 
@@ -37,13 +38,13 @@ namespace Minor.ServiceBus.Agent.Implementation
             return GetMetaDataEndpointAddress(name, profile, version);
         }
 
-        public string GetMetaDataEndpointAddress(string name, string profile, decimal? version = null)
+        private string GetMetaDataEndpointAddress(string name, string profile, decimal? version = null)
         {
-            var endpointAdress = new EndpointAddress(_adress);
-            var factory = new ChannelFactory<IServiceLocatorService>(_binding, endpointAdress);
+            EndpointAddress endpointAdress = new EndpointAddress(_adress);
+            ChannelFactory<IServiceLocatorService> factory = new ChannelFactory<IServiceLocatorService>(_binding, endpointAdress);
             IServiceLocatorService proxy = factory.CreateChannel();
 
-            var serviceLoction = new ServiceLocation();
+            ServiceLocation serviceLoction = new ServiceLocation();
             serviceLoction.Name = name;
             serviceLoction.Profile = profile;
             serviceLoction.Version = version;
