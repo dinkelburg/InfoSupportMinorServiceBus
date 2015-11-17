@@ -36,6 +36,7 @@ namespace Minor.ServiceBus.PfSLocatorService.Implementation.Test
             Assert.AreEqual(expected, result);
         }
 
+
         [TestMethod]
         [ExpectedException(typeof(FaultException<FunctionalErrorList>))]
         public void FindMetaEA_WithoutVersion_FoundMultiple()
